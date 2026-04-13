@@ -1,0 +1,127 @@
+output_dir: ./checkpoints/Cataract-1K
+pretrained_model_path: TIGER-Lab/ConsistI2V
+# resume_from_checkpoint:
+finetuned_autoencoder_path: ./checkpoints/Cataract-1K/vae_vid_diffusion
+only_save_latest_checkpoint: true
+
+noise_scheduler_kwargs:
+  num_train_timesteps:    1000
+  beta_start:             0.00085
+  beta_end:               0.012
+  beta_schedule:          linear
+  steps_offset:           1
+  clip_sample:            false
+  rescale_betas_zero_snr: false     # true if using zero terminal snr
+  timestep_spacing:       leading # "trailing" if using zero terminal snr
+  prediction_type:        epsilon # "v_prediction" if using zero terminal snr
+
+train_data:
+  dataset:            surgical
+  dataset_name:       cataract
+  video_folder:
+    - /path/to/dataset/Cataract-1K
+  class_size:         14
+  split_mode:         train
+  return_graph_emb:   true
+  return_cond_videos: false
+  sample_size:        128
+  sample_n_frames:    16
+  apply_augmentation: false
+  # apply_augmentation: true # runs much slower with augmentation since graphs are formed on the fly from the augmented images and segmentations
+  # background_label: [0] # following label info is only used if augmentation is true, and graphs needs to be formed on the fly from the augmented
+  # anatomy_label: [1, 2]
+  # tool_label: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+  
+  embedding_type: combined # combined or masked or segclip
+  model_masked: ./checkpoints/Cataract-1K/graphencoder_masked/best_val_loss.pth
+  model_segclip: ./checkpoints/Cataract-1K/graphencoder_segclip/best_val_loss.pth
+  graph_input_dim: 20
+  graph_hidden_dim: 256
+  graph_embedding_dim: 256
+  trainable: False
+  graph_conv_type: GATv2Conv
+  graph_norm_type: LayerNorm
+
+validation_data:
+  prompts:
+    - "sequence during cataract surgery."
+    - "sequence during cataract surgery."
+    - "sequence during cataract surgery."
+    - "sequence during cataract surgery."
+    - "sequence during cataract surgery."
+    - "sequence during cataract surgery."
+    - "sequence during cataract surgery."
+    - "sequence during cataract surgery."
+
+  path_to_first_frames:
+    - "/path/to/dataset/Cataract-1K/video_frames_jpg/case_2018/0000000649.jpg"
+    - "/path/to/dataset/Cataract-1K/video_frames_jpg/case_2034/0000001399.jpg"
+    - "/path/to/dataset/Cataract-1K/video_frames_jpg/case_2036/0000000060.jpg"
+    - "/path/to/dataset/Cataract-1K/video_frames_jpg/case_2067/0000000788.jpg"
+    - "/path/to/dataset/Cataract-1K/video_frames_jpg/case_2092/0000001012.jpg"
+    - "/path/to/dataset/Cataract-1K/video_frames_jpg/case_2116/0000000070.jpg"
+    - "/path/to/dataset/Cataract-1K/video_frames_jpg/case_2125/0000000809.jpg"
+    - "/path/to/dataset/Cataract-1K/video_frames_jpg/case_2131/0000000017.jpg"
+
+  path_to_graphs:
+    - "/path/to/dataset/Cataract-1K/scene_graphs_sim/case_2018/0000000649.pt"
+    - "/path/to/dataset/Cataract-1K/scene_graphs_sim/case_2034/0000001399.pt"
+    - "/path/to/dataset/Cataract-1K/scene_graphs_sim/case_2036/0000000060.pt"
+    - "/path/to/dataset/Cataract-1K/scene_graphs_sim/case_2067/0000000788.pt"
+    - "/path/to/dataset/Cataract-1K/scene_graphs_sim/case_2092/0000001012.pt"
+    - "/path/to/dataset/Cataract-1K/scene_graphs_sim/case_2116/0000000070.pt"
+    - "/path/to/dataset/Cataract-1K/scene_graphs_sim/case_2125/0000000809.pt"
+    - "/path/to/dataset/Cataract-1K/scene_graphs_sim/case_2131/0000000017.pt"
+
+  num_inference_steps: 50
+  ddim_eta: 0.0
+  guidance_scale_txt: 7.5
+  guidance_scale_img: 1.0
+  guidance_rescale: 0.0
+
+trainable_modules:
+  - "all"
+  # - "conv3ds."
+  # - "tempo_attns."
+
+unet_additional_kwargs:
+  variant: null
+  n_temp_heads: 8
+  augment_temporal_attention: true
+  temp_pos_embedding: rotary # rotary or sinusoidal
+  first_frame_condition_mode: concat
+  use_frame_stride_condition: false
+  noise_sampling_method: pyoco_mixed # vanilla or pyoco_mixed or pyoco_progressive
+  noise_alpha: 1.0
+
+unet_graph_kwargs:
+  class_label_condition_mode: true
+  class_embeddings_concat: true
+  class_embed_type: identity
+  time_embedding_dim: 512
+  ignore_mismatched_sizes: true
+
+cfg_random_null_text_ratio: 0.1
+cfg_random_null_img_ratio: 0.1
+
+use_ema: false
+ema_decay: 0.9999
+
+learning_rate:    5.e-5
+train_batch_size: 2
+gradient_accumulation_steps: 2
+max_grad_norm: 0.5
+
+max_train_epoch:      -1
+max_train_steps:      1000000
+checkpointing_epochs: -1
+checkpointing_steps:  5000
+validation_steps:     2000
+
+seed: 42
+mixed_precision: bf16
+num_workers: 24
+enable_xformers_memory_efficient_attention: true
+
+is_image: false
+is_debug: false

@@ -1,0 +1,1 @@
+from swomo.ldm.modules.losses.contperceptual import LPIPSWithDiscriminator

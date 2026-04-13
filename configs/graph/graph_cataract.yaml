@@ -1,0 +1,44 @@
+dataset_name: cataract
+class_size: 14
+ignore_index: first # only first or last
+data_root: 
+  - /path/to/dataset/Cataract-1K
+log_dir: ./checkpoints/Cataract-1K
+num_graph_in_3d: 16
+overlap_size: 4 # 1 for max overlap; num_graph_in_3d for no overlap 
+
+size: 128
+batch_size: 2
+num_workers: 16
+weight_decay: 1e-5
+patience: 1
+factor: 0.8
+epochs: 200
+device: cuda
+
+graph_encoder_lr: 1e-4 # 1e-4 for masked and 5e-5 for segclip
+graph_input_dim: 20 # class_size + 2 + 2 + 2
+graph_hidden_dim: 256
+graph_embedding_dim: 256
+graph_conv_type: GATv2Conv # GCNConv or GATConv or GATv2Conv or TransformerConv or SAGEConv or ChebConv or GINConv
+graph_norm_type: LayerNorm # BatchNorm or GraphNorm or LayerNorm or InstanceNorm
+
+image_encoder_lr: 5e-6
+image_embedding_dim: 256
+image_encoder_config: ./checkpoints/Cataract-1K/vqgan_image/config.yaml
+image_encoder_ckpt: ./checkpoints/Cataract-1K/vqgan_image/checkpoint.ckpt
+
+segmentation_encoder_lr: 1e-7 # not being used
+segmentation_embedding_dim: 256
+segmentation_encoder_config: ./checkpoints/Cataract-1K/vqgan_segmentation/config.yaml
+segmentation_encoder_ckpt: ./checkpoints/Cataract-1K/vqgan_segmentation/checkpoint.ckpt
+
+augmentation: False
+# augmentation: True # runs much slower with augmentation since graphs are formed on the fly from the augmented images and segmentations
+# background_label: [0] # following label info is only used if augmentation is true, and graphs needs to be formed on the fly from the augmented
+# anatomy_label: [1, 2]
+# tool_label: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+
+trainable: True
+temperature: 1.0
+dropout: 0.2

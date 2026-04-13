@@ -1,0 +1,56 @@
+model:
+  base_learning_rate: 4.5e-6
+  target: swomo.taming.taming.models.vqgan.VQSegmentationModel
+  params:
+    embed_dim: 1
+    n_embed: 8192
+    image_key: segmentation
+    n_labels: 14
+    palatte: cataract1k
+    ddconfig:
+      double_z: false
+      z_channels: 1
+      resolution: 128
+      in_channels: 14
+      out_ch: 14
+      ch: 128
+      ch_mult:
+      - 1
+      - 2
+      - 2
+      - 4
+      num_res_blocks: 2
+      attn_resolutions:
+      - 16
+      dropout: 0.0
+    lossconfig:
+      target: swomo.taming.taming.modules.losses.segmentation.BCELossWithQuant
+      params:
+        codebook_weight: 1.0
+
+data:
+  target: main.DataModuleFromConfig
+  params:
+    batch_size: 16
+    num_workers: 16
+    train:
+      target: swomo.taming.taming.data.surgicaldataset.CataractTrain
+      params:
+        size: 128
+        num_label: 14
+        augment: True
+        txt_file: 
+          - /path/to/dataset/Cataract-1K/splits/train.txt
+        data_root: 
+        - /path/to/dataset/Cataract-1K
+
+    validation:
+      target: swomo.taming.taming.data.surgicaldataset.CataractValidation
+      params:
+        size: 128
+        num_label: 14
+        augment: False
+        txt_file: 
+          - /path/to/dataset/Cataract-1K/splits/val.txt
+        data_root: 
+        - /path/to/dataset/Cataract-1K      
