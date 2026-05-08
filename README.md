@@ -4,14 +4,14 @@
   Ssharvien Kumar Sivakumar, Akwele Johnson, Anirudh Dhingra, Yannik Frisch, Ghazal Ghazaei, Anirban Mukhopadhyay 
 
   [![arXiv](https://img.shields.io/badge/arXiv-xxxx.xxxxx-b31b1b.svg)](https://arxiv.org/abs/xxxx.xxxxx)
-  [![Homepage](https://img.shields.io/badge/Homepage-Visit-blue)](https://ssharvienkumar.github.io/SWoMo/)
+  [![Project Page](https://img.shields.io/badge/Project-Page-green)](https://ssharvienkumar.github.io/SWoMo/)
   [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/SsharvienKumar/SWoMo)
-
+  [![GitHub](https://img.shields.io/badge/GitHub-IntrekSAM-black?logo=github)](https://github.com/SsharvienKumar/SWoMo)
 </div>
 
 ***This framework provides ability to use any combination of text, graph, image and video as conditioning for video synthesisation. We have provided sample configs to run training and inference for all these combinations. Feel free to use our work for comparisons and to cite it!***
 
-***STILL NEED TO UPDATE ARXIV & HUGGINGFACE***
+***STILL NEED TO UPDATE ARXIV***
 
 ## 🔑 Key Features
 - SWoMo is a neuro-symbolic world model for surgical simulation that decouples interaction dynamics from visual appearance. 
