@@ -1,17 +1,15 @@
 <div id="top" align="center">
 
-# SWoMo: Neuro-Symbolic World Model for Cataract Surgery Simulation (MICCAI 2026)
+# SWoMo: Neuro-Symbolic World Model for Cataract Surgery Simulation (MICCAI 2026 - Early Accept)
   Ssharvien Kumar Sivakumar, Akwele Johnson, Anirudh Dhingra, Yannik Frisch, Ghazal Ghazaei, Anirban Mukhopadhyay 
 
-  [![arXiv](https://img.shields.io/badge/arXiv-xxxx.xxxxx-b31b1b.svg)](https://arxiv.org/abs/xxxx.xxxxx)
+  [![arXiv](https://img.shields.io/badge/arXiv-2605.16530-b31b1b.svg)](https://arxiv.org/abs/2605.16530)
   [![Project Page](https://img.shields.io/badge/Project-Page-green)](https://ssharvienkumar.github.io/SWoMo/)
   [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/SsharvienKumar/SWoMo)
-  [![GitHub](https://img.shields.io/badge/GitHub-IntrekSAM-black?logo=github)](https://github.com/SsharvienKumar/SWoMo)
+  [![GitHub](https://img.shields.io/badge/GitHub-IntrekSAM-Yellow?logo=github)](https://github.com/MECLabTUDA/IntrekSAM)
 </div>
 
 ***This framework provides ability to use any combination of text, graph, image and video as conditioning for video synthesisation. We have provided sample configs to run training and inference for all these combinations. Feel free to use our work for comparisons and to cite it!***
-
-***STILL NEED TO UPDATE ARXIV***
 
 ## 🔑 Key Features
 - SWoMo is a neuro-symbolic world model for surgical simulation that decouples interaction dynamics from visual appearance. 
@@ -105,7 +103,7 @@ If you are using SWoMo for your paper, please cite the following paper:
 @article{sivakumar2026swomo,
   title={SWoMo: Neuro-Symbolic World Model for Cataract Surgery Simulation},
   author={Sivakumar, Ssharvien Kumar and Johnson, Akwele and Dhingra, Anirudh and Frisch, Yannik and Ghazaei, Ghazal and Mukhopadhyay, Anirban},
-  journal={arXiv preprint arXiv:xxxx.xxxxx},
+  journal={arXiv preprint arXiv:2605.16530},
   year={2026}
 }
 ```
