@@ -30,7 +30,7 @@ conda activate swomo
 ## 💾 Dataset Preparation and Annotation Tools
 We released our interactive SAM2-based annotation tool in a separate repository: [IntrekSAM](https://github.com/MECLabTUDA/IntrekSAM). In our research, we found that there was no existing tool for video segmentation annotation that is free, open-source, locally deployable, easily modifiable, supports multi-class segmentation, and is simple to set up. Therefore, we rewrote the GUI in Python while still keeping the original SAM2 backend.
 
-We also make our processed Cataract-1k data available on [Hugging Face](https://huggingface.co/SsharvienKumar/SWoMo/tree/main/datasets), including real videos, simulated videos, simulated segmentations, and scene graphs. If you would like to use our **manually annotated segmentations of the real videos (at 16 fps)** for the 1,068 videos from Cataract-1K and 50 videos from CATARACTS, please contact me via the email address in the paper. I would also be happy to share additional annotations described in the paper, such as phase labels and tracking point annotation, upon request.
+We also make our processed Cataract-1k data available on [Hugging Face](https://huggingface.co/SsharvienKumar/SWoMo/tree/main/datasets), including real videos, simulated videos, simulated segmentations, and scene graphs. If you would like to use our **manually annotated segmentations of the real videos (at 16 fps)** for the 869 videos from Cataract-1K, please contact me via the email address in the paper. I would also be happy to share additional annotations described in the paper, such as phase labels and tracking point annotation, upon request.
 
 
 ## 🏁 Checkpoints
