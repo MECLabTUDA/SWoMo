@@ -1,6 +1,6 @@
 <div id="top" align="center">
 
-# SWoMo: Neuro-Symbolic World Model for Cataract Surgery Simulation (MICCAI 2026 - Spotlight Presentation)
+# SWoMo: Neuro-Symbolic World Model for Cataract Surgery Simulation (MICCAI 2026 - Shortlisted for MICCAI Best Paper and Young Scientist Award)
   Ssharvien Kumar Sivakumar, Akwele Johnson, Anirudh Dhingra, Yannik Frisch, Ghazal Ghazaei, Anirban Mukhopadhyay 
 
   [![arXiv](https://img.shields.io/badge/arXiv-2605.16530-b31b1b.svg)](https://arxiv.org/abs/2605.16530)
